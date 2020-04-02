@@ -10,11 +10,13 @@ $(document).ready(function(){
 
    // freccia prev
     $('.prev').click(
-        prevImg
+      prevImg
     );
 
     //click sul pallino
-
+    $('.nav i').click(
+      seeImgBal
+    );
 
 
 
@@ -27,12 +29,10 @@ $(document).ready(function(){
      var imgActive = $('.images img.active');
      // salvo il pallino attivo
      var ballActive = $('.nav i.active');
-
      // tolgo la classe active all'img selezionata
      imgActive.removeClass('active');
      // tolgo la classe active al pallino selezionato
      ballActive.removeClass('active');
-
 
      // verifico se questa img era l'ultima
      if(imgActive.hasClass('last')){
@@ -64,24 +64,37 @@ $(document).ready(function(){
       imgActive.prev().addClass('active');
       ballActive.prev().addClass('active');
     }
-
   }
 
-  var imgOfImages = $('.images img');
+  // funzione BALL ---------------------------------------
+  function seeImgBal() {
+    // salvo ref a img e ball attiva al momento del click
+    var imgActive = $('.images img.active');
+    var ballActive = $('.nav i.active');
+    // tolgo la classe active all'img e ball selezionati
+    imgActive.removeClass('active');
+    ballActive.removeClass('active');
 
-  for (var i = 0; i <= imgOfImages.length; i++) {
-    //assegnare classe a immagini
-    var selectorImg = '.images img:nth-child'+'('+ i +')';
-    var classToAddImg = 'img'+i
-    $(selectorImg).addClass(classToAddImg);
-
-    //assegnare classe a ball
-    var selectorBall = '.nav i:nth-child'+'('+ i +')';
-    var classToAddBall = 'ball'+i
-    $(selectorBall).addClass(classToAddBall);
-
+    //assegno l'active all img con lo stesso index del ball selezionato
+    var idx = $('.nav i').index(this);
+    $('.images img').eq(idx).addClass('active');
+    $(this).addClass('active');
   }
 
+
+
+
+//assegnare classi diverse a immagini senza classe (per riconoscimento)
+  // var imgOfImages = $('.images img');
+  //
+  // for (var i = 0; i <= imgOfImages.length; i++) {
+  //
+  //   var selectorImg = '.images img:nth-child'+'('+ i +')';
+  //   var classToAddImg = 'img'+i ;
+  //   $(selectorImg).addClass(classToAddImg);
+  //
+  // }
+  //
 
 
 
